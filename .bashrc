@@ -1,0 +1,10 @@
+alias nd="nr dev"
+alias ns="nr start"
+alias nb="nr build"
+alias gp="git pull"
+alias gps="git push"
+alias tss='tss(){ degit https://github.com/cinob/ts-start-template.git $1;};tss'
+alias l1='tree -L 1'
+alias l2='tree -L 2'
+alias l3='tree -L 3'
+alias c='_c(){ gcc $1 -o ${1%.*}; ./${1%.*};};_c'
