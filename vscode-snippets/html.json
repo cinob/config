@@ -1,0 +1,39 @@
+{
+	"HTML template with unocss": {
+		"prefix": "html",
+		"body": [
+			"<!DOCTYPE html>",
+			"<html lang=\"en\">",
+			"<head>",
+			"  <meta charset=\"UTF-8\">",
+			"  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">",
+			"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+			"  <title>Document</title>",
+			"  <script src=\"https://cdn.jsdelivr.net/npm/@unocss/runtime\"></script>",
+			"  <script src=\"https://cdn.jsdelivr.net/npm/@unocss/runtime/attributify.global.js\"></script>",
+			"  <script>",
+			"    window.__unocss = {",
+			"      shortcuts: [",
+			"        [/^square-\\[?(.*?)\\]?$/, ([, size]) => {",
+			"          return `w-${size} h-${size}`",
+			"        }],",
+			"        [/^circle-\\[?(.*?)\\]?$/, ([, size]) => {",
+			"          return `square-${size} rounded-full`",
+			"        }],",
+			"        ['flex-center', 'flex justify-center items-center'],",
+			"      ],",
+			"    }",
+			"  </script>",
+			"</head>",
+			"",
+			"<body>",
+			"  <div class=\"\">",
+			"    $1",
+			"  </div>",
+			"</body>",
+			"",
+			"</html>"
+		],
+		"description": "Log output to console"
+	}
+}

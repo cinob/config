@@ -1,0 +1,15 @@
+{
+	"main template": {
+		"prefix": "temp",
+		"body": [
+			"#include <stdio.h>",
+			"",
+			"int main()",
+			"{",
+			"  $1",
+			"  return 0;",
+			"}"
+		],
+		"description": "main template"
+	}
+}
