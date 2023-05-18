@@ -1,4 +1,4 @@
-alias bashconfig="code ~/.bashrc"
+alias zshconfig="code ~/.zshrc"
 alias cls='clear'
 alias nd="nr dev"
 alias ns="nr start"
