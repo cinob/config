@@ -1,0 +1,72 @@
+mixed-port: 10809
+ipv6: false
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: '0.0.0.0:9090'
+secret: ''
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - 114.114.114.114
+  #enhanced-mode: redir-host
+  enhanced-mode: fake-ip #如果要玩netflix，需要使用fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver: 
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - https://doh.dns.sb/dns-query
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.twnic.tw/dns-query
+    - tls://8.8.4.4:853
+  fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
+
+# 两个代理服务器
+proxies:
+  - name: "https01"
+    type: http
+    server: example.com
+    port: 443
+    username: example
+    password: example
+    tls: true # https
+    skip-cert-verify: true
+
+# 配置 Group
+proxy-groups:
+  # 自动切换
+  - name: "auto"
+    type: url-test
+    proxies:
+      - https01
+      #- us02_https
+      #- hk_https
+    # tolerance: 150
+    url: 'https://www.google.com/'
+    interval: 300
+
+rules:
+# LAN
+  - DOMAIN-SUFFIX,local,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+
+# Netflix
+  # - DOMAIN-SUFFIX,fast.com,netflix
+  # - DOMAIN-SUFFIX,api-global.netflix.com,netflix
+  # - DOMAIN-SUFFIX,netflix.com,netflix
+  # - DOMAIN-SUFFIX,netflix.net,netflix
+  # - DOMAIN-SUFFIX,nflxext.com,netflix
+  # - DOMAIN-SUFFIX,nflximg.com,netflix
+  # - DOMAIN-SUFFIX,nflximg.net,netflix
+  # - DOMAIN-SUFFIX,nflxso.net,netflix
+  # - DOMAIN-SUFFIX,nflxvideo.net,netflix
+
+# 最终规则（除了中国区的IP之外的，全部翻墙）
+  - GEOIP,CN,DIRECT
+  - MATCH,auto
