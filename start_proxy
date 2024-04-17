@@ -1,5 +1,5 @@
 #!/bin/sh
-hostip=$(powershell.exe -Command "(ipconfig)" | grep IPv4 | grep 192.168 | awk '{print $14}' | tr -d '\r\n')
+hostip=$(powershell.exe -Command "(chcp.com 65001 | ipconfig)" | grep IPv4 | grep 192.168 | awk '{print $14}' | tr -d '\r\n')
 wslip=$(hostname -I | awk '{print $1}')
 port=10809
 
