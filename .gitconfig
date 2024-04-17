@@ -1,0 +1,7 @@
+[user]
+  name = cinob
+  email = cinob@foxmail.com
+[core]
+  editor = vim
+[alias]
+  graph = log --graph --oneline --decorate
