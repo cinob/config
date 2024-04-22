@@ -9,3 +9,7 @@ alias l2='tree -L 2'
 alias l3='tree -L 3'
 alias c='_c(){ gcc $1 -o ${1%.*}; ./${1%.*};};_c'
 alias mkcd='_mkcd() { mkdir -p "$1" && cd "$1" };_mkcd'
+
+if [ -f ~/.tmux.config ]; then
+  tmux source-file ~/.tmux.config
+fi
